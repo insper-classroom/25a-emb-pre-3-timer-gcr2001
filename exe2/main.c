@@ -11,8 +11,6 @@ const int LED_PIN_G = 6;
 volatile int flag_r = 0;
 volatile int flag_g = 0;
 
-volatile int timer_running_r = 0;
-volatile int timer_running_g = 0;
 repeating_timer_t timer_r;
 repeating_timer_t timer_g;
 
@@ -55,6 +53,9 @@ int main() {
     gpio_set_irq_enabled_with_callback(BTN_PIN_R, GPIO_IRQ_EDGE_FALL, true,
                                        &btn_callback);
     gpio_set_irq_enabled(BTN_PIN_G, GPIO_IRQ_EDGE_FALL, true);
+
+    volatile int timer_running_r = 0;
+    volatile int timer_running_g = 0;
 
     while (true) {
         if (flag_r) {
